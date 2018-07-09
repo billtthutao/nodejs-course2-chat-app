@@ -27,10 +27,10 @@ io.on('connection',(socket) => {
     callback('This is from the server');
   });
 
-  socket.on('sendLocationMessage', (message,callback) => {
-    console.log('sendLocationMessage',message);
+  socket.on('createLocationMessage', (message,callback) => {
+    console.log('createLocationMessage',message);
     io.emit('newMessage',generateMessage('Admin',message));
-    callback('THis loc is from the server');
+    callback('This loc is from the server');
   });
 
   socket.on('disconnect', () => {
