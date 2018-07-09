@@ -6,10 +6,10 @@ var generateMessage = (from,text) => {
   };
 };
 
-var generateLocationMessage = (from,latitude,longitude){
+var generateLocationMessage = (from,latitude,longitude) => {
   return {
     from,
-    utl:`https//www.google.com/maps?/q=${latitude},${longitude}`
+    utl:`https://www.google.com/maps?/q=${latitude},${longitude}`,
     createdAt:new Date().getTIme()
   };
 };
