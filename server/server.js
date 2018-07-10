@@ -3,6 +3,7 @@ const express = require('express');
 const socketIo = require('socket.io');
 const http = require('http');
 const {generateMessage, generateLocationMessage} = require('./utils/message.js');
+const {isRealString} = require('./utils/validation.js');
 
 const port = process.env.PORT || 3000;
 
@@ -20,6 +21,14 @@ io.on('connection',(socket) => {
   //broadcast message to everyone except the one who login
   socket.broadcast.emit('newMessage',
                         generateMessage('Admin','New user joined!'));
+
+  socket.on('join',(params,callback) => {
+    if(!isRealString(params.name) || !isRealString(params.room)){
+      callback('Display name and room name are required');
+    }else{
+      callback();
+    }
+  });
 
   socket.on('createMessage', (message,callback) => {
     console.log('createmessage',message);
